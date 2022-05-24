@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CV maker</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container col-8">
+            <form>
+                <!-- form action? method? -->
+                <!-- is it good idea to use fieldsets to section the CV maker? -->
+                <fieldset id="contact-info-field">
+                    <legend>Contact info</legend>
+                    <div class="form-group">
+                        <label for="profile-picture" class="control-label">Profile Picture</label>
+                        <input type="file" name="profile-picture" accept="image/*" class="form-control" id="profile-picture">
+                    </div>
+                    <div class="div-group">
+                        <div class="form-group col-6">
+                            <!-- id and name is the same, is it ok?  -->
+                            <label for="firstname" class="control-label">First name</label>
+                            <input type="text" name="firstname" placeholder="e.g. Jane" class="form-control" id="firstname">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="lastname" class="control-label">Last Name</label>
+                            <input type="text" name="lastname " placeholder="e.g. Doe " class="form-control " id="lastname ">
+                        </div>
+                    </div>
+
+                    <div class="div-group">
+                        <div class="form-group col-3">
+                            <label for="street" class="control-label">Street</label>
+                            <input type="text" name="street" placeholder="e.g. Musterstrasse 12/1" class="form-control" id="street">
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="city" class="control-label">City</label>
+                            <input type="text" name="city" placeholder="e.g. Vienna" class="form-control" id="city">
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="country" class="control-label">Country</label>
+                            <input type="text" name="country" placeholder="e.g. Austria" class="form-control" id="country">
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="postal-code" class="control-label">Postal Code</label>
+                            <input type="text" name="postal-code" placeholder="e.g. 1020" class="form-control" id="postal-code">
+                        </div>
+                    </div>
+
+                    <div class="div-group">
+                        <div class="form-group col-6">
+                            <label for="phone" class="control-label">Phone</label>
+                            <input type="text" name="phone" placeholder="e.g. +43 688 1112233" class="form-control" id="phone">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="email" class="control-label">Email</label>
+                            <input type="email" name="email" placeholder="e.g. doe@sample.com" class="form-control" id="email">
+                        </div>
+                    </div>
+
+                    <!-- How/where do you store template codes like this? -->
+                    <!-- <div class="form-group">
+                <label for="" class="control-label"></label>
+                <input type="text" name="" placeholder="" class="form-control" id="">
+                </div>
+
+            div.form-group>label[for].control-label+input[type=text name placeholder].form-control#-->
+                </fieldset>
+
+                <fieldset id="job-title-field">
+                    <legend>Job Title</legend>
+                    <div class="form-group">
+                        <label for="profession" class="control-label">Profession</label>
+                        <textarea name="profession" class="form-control " id="profession">Please, write a few sentences about yourself.</textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset id="summary-field">
+                    <legend>Summary</legend>
+                    <div class="form-group">
+                        <label for="summary" class="control-label">Summary</label>
+                        <input type="text" name="summary" placeholder="e.g. Barista" class="form-control " id="summary">
+                    </div>
+                </fieldset>
+
+                <fieldset id="experience-field">
+                    <legend>Experience</legend>
+                </fieldset>
+
+                <fieldset id="education-field">
+                    <legend>Education</legend>
+                </fieldset>
+
+                <fieldset id="skills-field">
+                    <legend>Skills</legend>
+                </fieldset>
+
+
+                <button id="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="preview col-4">
+            <p>Preview</p>
+        </div>
+    </div>
+
+
+    <script src="script.js "></script>
+</body>
+
+</html>
