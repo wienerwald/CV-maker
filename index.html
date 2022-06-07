@@ -7,29 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>CV maker</title>
+    <script src="https://kit.fontawesome.com/aeac50cfda.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="form-container col-8">
-            <form>
-                <!-- form action? method? -->
-                <!-- is it good idea to use fieldsets to section the CV maker? -->
-                <fieldset id="contact-info-field">
-                    <legend>Contact info</legend>
+            <form id="cv-form">
+                <!-- We need the 'name' attribute in the form! If the name attribute is omitted, the value of the input field will not be sent. -->
+                <fieldset id="contact-info-field" class="fieldset">
+                    <legend class="fieldset-legend">Contact info</legend>
                     <div class="form-group">
                         <label for="profile-picture" class="control-label">Profile Picture</label>
                         <input type="file" name="profile-picture" accept="image/*" class="form-control" id="profile-picture">
                     </div>
                     <div class="div-group">
                         <div class="form-group col-6">
-                            <!-- id and name is the same, is it ok?  -->
                             <label for="firstname" class="control-label">First name</label>
                             <input type="text" name="firstname" placeholder="e.g. Jane" class="form-control" id="firstname">
                         </div>
                         <div class="form-group col-6">
                             <label for="lastname" class="control-label">Last Name</label>
-                            <input type="text" name="lastname " placeholder="e.g. Doe " class="form-control " id="lastname ">
+                            <input type="text" name="lastname" placeholder="e.g. Doe " class="form-control " id="lastname ">
                         </div>
                     </div>
 
@@ -62,54 +61,151 @@
                             <input type="email" name="email" placeholder="e.g. doe@sample.com" class="form-control" id="email">
                         </div>
                     </div>
-
-                    <!-- How/where do you store template codes like this? -->
-                    <!-- <div class="form-group">
-                <label for="" class="control-label"></label>
-                <input type="text" name="" placeholder="" class="form-control" id="">
-                </div>
-
-            div.form-group>label[for].control-label+input[type=text name placeholder].form-control#-->
                 </fieldset>
 
-                <fieldset id="job-title-field">
-                    <legend>Job Title</legend>
+                <fieldset id="current-application-field" class="fieldset">
+                    <legend class="fieldset-legend">Current Application</legend>
                     <div class="form-group">
-                        <label for="profession" class="control-label">Profession</label>
-                        <textarea name="profession" class="form-control " id="profession">Please, write a few sentences about yourself.</textarea>
+                        <label for="profession" class="control-label">Job title</label>
+                        <input type="text" name="profession" placeholder="e.g. Medior Frontend Developer" class="form-control " id="profession">
                     </div>
-                </fieldset>
-
-                <fieldset id="summary-field">
-                    <legend>Summary</legend>
                     <div class="form-group">
                         <label for="summary" class="control-label">Summary</label>
-                        <input type="text" name="summary" placeholder="e.g. Barista" class="form-control " id="summary">
+                        <textarea name="summary" class="form-control " id="summary">Please, write a few sentences about yourself.</textarea>
                     </div>
                 </fieldset>
 
-                <fieldset id="experience-field">
-                    <legend>Experience</legend>
+                <fieldset id="experience-field" class="fieldset">
+                    <legend class="fieldset-legend">Experience</legend>
+                    <fieldset id="job-field-1" class="fieldset">
+                        <legend class="fieldset-legend">Most Recent Job</legend>
+                        <div class="div-group">
+                            <div class="form-group col-6">
+                                <label for="job-title-1" class="control-label">Job Title</label>
+                                <input type="text" name="" placeholder="e.g. Frontend Web Developer" class="form-control" id="job-title-1">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="employer-1" class="control-label">Employer</label>
+                                <input type="text" name="" placeholder="e.g. IBM" class="form-control" id="employer-1">
+                            </div>
+                        </div>
+                        <div class="div-group">
+                            <div class="form-group col-6">
+                                <label for="job-location-1" class="control-label">Job Location</label>
+                                <input type="text" name="job-location-1" placeholder="e.g. Munich, Gemany" class="form-control" id="job-location-1">
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="job-date-start-1" class="control-label">Start Date</label>
+                                <input type="month" name="job-date-start-1" placeholder="MM / JJJJ" class="form-control" id="job-date-start-1">
+                                <select name="job-date-start-month-1">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="job-date-end-1" class="control-label">End Date</label>
+                                <input type="month" name="job-date-end-1" placeholder="" class="form-control" id="job-date-end-1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-description-1" class="control-label">Job Description</label>
+                            <input type="text" name="job-description-1" placeholder="" class="form-control" id="job-description-1">
+                        </div>
+                        <!-- Format checkbox label -->
+                        <div class="form-group">
+                            <input type="checkbox" name="job-currently-1" placeholder="" class="" id="job-currently-1">
+                            <label for="job-currently-1" class="">I currently work here</label>
+                        </div>
+                        <!-- RESOLVE THIS ICON: -->
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <!-- Add another position -->
+                    </fieldset>
+
                 </fieldset>
 
-                <fieldset id="education-field">
-                    <legend>Education</legend>
+                <fieldset id="education-field" class="fieldset">
+                    <legend class="fieldset-legend">Education</legend>
+                    <div class="div-group">
+                        <div class="form-group col-6">
+                            <label for="school-name-1" class="control-label">School Name</label>
+                            <input type="text" name="school-name-1" placeholder="e.g. University of Vienna" class="form-control" id="school-name-1">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="school-location-1" class="control-label">School location</label>
+                            <input type="text" name="school-location-1" placeholder="e.g. Vienna, Austria" class="form-control" id="school-location-1">
+                        </div>
+                    </div>
+                    <div class="div-group">
+                        <div class="form-group col-6">
+                            <label for="school-study-1" class="control-label">Field of Study</label>
+                            <input type="text" name="school-study-1" placeholder="e.g. Information technology" class="form-control" id="school-study-1">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="school-degree-1" class="control-label">Degree</label>
+                            <input type="text" name="school-degree-1" placeholder="e.g. MSc" class="form-control" id="school-degree-1">
+                        </div>
+                    </div>
+                    <div class="div-group">
+                        <div class="form-group col-3">
+                            <label for="school-date-start-1" class="control-label">Start Date</label>
+                            <input type="month" name="school-date-start-1" placeholder="MM / JJJJ" class="form-control" id="school-date-start-1">
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="job-date-end-1" class="control-label">End Date</label>
+                            <input type="month" name="job-date-end-1" placeholder="" class="form-control" id="job-date-end-1">
+                        </div>
+                    </div>
+                    <!-- Format checkbox label -->
+                    <div class="form-group">
+                        <input type="checkbox" name="school-currently-1" placeholder="" class="" id="school-currently-1">
+                        <label for="school-currently-1" class="">I currently attend here</label>
+                    </div>
+                    <!-- Add another degree -->
+                    <!-- Delete degree -->
                 </fieldset>
 
-                <fieldset id="skills-field">
-                    <legend>Skills</legend>
+                <fieldset id="skills-field" class="fieldset">
+                    <legend class="fieldset-legend">Skills</legend>
+                    <div class="div-group">
+                        <div class="form-group col-3">
+                            <label for="skill-name-1" class="control-label">Skill</label>
+                            <input type="text" name="skill-name-1" placeholder="" class="form-control" id="skill-name-1">
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="skill-rating-1" class="control-label">Rating</label>
+                            <input type="text" name="skill-rating-1" placeholder="There will be rating with stars!" class="form-control" id="skill-rating-1">
+                        </div>
+                        <!-- Add another skill -->
+                        <!-- Delete skill -->
+                    </div>
                 </fieldset>
 
-
-                <button id="submit">Submit</button>
+                <button type="submit" class="submit">Submit</button>
             </form>
         </div>
 
         <div class="preview col-4">
             <p>Preview</p>
+            <p id="preview-text"></p>
         </div>
     </div>
 
+
+    <!-- <div class="form-group">
+                <label for="" class="control-label"></label>
+                <input type="text" name="" placeholder="" class="form-control" id="">
+                </div>
+    div.form-group>label[for].control-label+input[type=text name placeholder].form-control#-->
 
     <script src="script.js "></script>
 </body>

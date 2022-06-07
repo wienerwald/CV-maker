@@ -22,7 +22,9 @@ body {
     height: 100vh;
     padding: 10px;
     text-align: center;
-    position: sticky;
+    position: fixed;
+    top: 0;
+    right: 0;
 }
 
 .div-group {
@@ -50,15 +52,15 @@ body {
     width: 25%;
 }
 
-fieldset {
+.fieldset {
     padding: 10px;
 }
 
-fieldset legend {
+.fieldset-legend {
     font-size: 24px;
 }
 
-fieldset+fieldset {
+.fieldset+.fieldset {
     margin-top: 10px;
 }
 
@@ -76,11 +78,12 @@ fieldset+fieldset {
 .form-control {
     padding: 8px;
     width: 100%;
-    /* border: 1px solid #cacaca; */
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
 }
 
-#submit {
+.submit {
     font-size: 16px;
+    padding: 5px;
+    margin: 20px 0px;
 }
