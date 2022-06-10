@@ -32,6 +32,10 @@ body {
     flex-direction: row;
 }
 
+.col-12 {
+    width: 100%
+}
+
 .col-9 {
     width: 75%
 }
@@ -80,6 +84,31 @@ body {
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
+}
+
+.textarea {
+    width: 100%;
+    resize: vertical;
+    height: auto;
+}
+
+.date-select {
+    padding: 8px;
+    width: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+.inline-label {
+    padding-left: 8px;
+}
+
+.clickable:hover {
+    box-sizing: border-box;
+    color: cadetblue;
+    outline: 1px dashed cadetblue;
+    outline-offset: -2px;
+    cursor: pointer;
 }
 
 .submit {
