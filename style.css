@@ -116,3 +116,27 @@ body {
     padding: 5px;
     margin: 20px 0px;
 }
+
+.star-input{
+    display: none;
+}
+
+.star-label {
+    color: #C8C8C8;
+}
+
+.star-label::before {
+    content: "\2605";
+    font-size: 1.5em;
+    user-select: none;
+}
+
+.star-input:checked + .star-label::before {
+    color: #FFC107;
+}
+
+#preview-page {
+    width: 210mm;
+    height: 297mm;
+    background-color: white;
+}

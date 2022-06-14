@@ -9,6 +9,9 @@ cvForm.onsubmit = (event) => {
     console.log(entries);
 }
 
+
+//GENERAL FUNCTIONS
+
 // set multiple attributes at once
 const setAttributes = (elem, attrs) => {
     for (let key in attrs) {
@@ -39,21 +42,38 @@ for (let i = thisYear; i >= 1950; i--) {
 
 // generate dropdown menu for month or year
 const generateDateDropdown = (id, dateArray, parentNode) => {
-    const label = document.createElement("label");
-    label.setAttribute("for", id)
+    // const label = document.createElement("label");
+    // label.setAttribute("for", id)
     const select = document.createElement("select");
     select.classList.add("date-select");
-    setAttributes(select, { "name": id, "id": id });
+    setAttributes(select, {
+        "name": id,
+        "id": id
+    });
     dateArray.forEach(item => {
         const option = document.createElement("option");
         option.setAttribute("value", item);
         option.textContent = item;
         select.append(option);
-        parentNode.append(label, select);
+        parentNode.append(select);
     })
 };
 
+// disable end date if "I currently work here" checkbox is checked
+const disableEndDate = (event, endDate) => {
+    if (event.target.checked) {
+        endDate.forEach(elem => {
+            elem.disabled = true;
+        })
+    } else {
+        endDate.forEach(elem => {
+            elem.disabled = false;
+        })
+    }
+};
+
 // can we avoid creating so many variables (see below)???
+// Is there any way to speed up generating DOM node by node???
 
 // generate common elements
 const fieldset = document.createElement("fieldset");
@@ -74,6 +94,14 @@ const formgroup3 = document.createElement("div");
 formgroup3.classList.add("form-group", "col-3");
 const experienceFieldset = document.getElementById("experience-field");
 
+// delete fieldset
+const deleteFieldset = (event, fieldset) => {
+    fieldset.remove();
+}
+
+
+//JOB
+
 // generate job fieldset
 let jobFieldsetIndex = 0;
 const generateJobFieldset = () => {
@@ -89,7 +117,12 @@ const generateJobFieldset = () => {
     jobTitleLabel.setAttribute("for", "job-title-" + jobFieldsetIndex);
     addTextNode(jobTitleLabel, "Job Title");
     const jobTitleInput = input.cloneNode(true);
-    setAttributes(jobTitleInput, { "type": "text", "name": "job-title-" + jobFieldsetIndex, "placeholder": "e.g. Junior Frontend Web Developer", "id": "job-title-" + jobFieldsetIndex });
+    setAttributes(jobTitleInput, {
+        "type": "text",
+        "name": "job-title-" + jobFieldsetIndex,
+        "placeholder": "e.g. Junior Frontend Web Developer",
+        "id": "job-title-" + jobFieldsetIndex
+    });
 
     // employer
     const formgroup6Employer = formgroup6.cloneNode(true);
@@ -97,7 +130,12 @@ const generateJobFieldset = () => {
     employerLabel.setAttribute("for", "employer-" + jobFieldsetIndex);
     addTextNode(employerLabel, "Employer");
     const employerInput = input.cloneNode(true);
-    setAttributes(employerInput, { "type": "text", "name": "employer-" + jobFieldsetIndex, "placeholder": "e.g. Apple", "id": "employer-" + jobFieldsetIndex });
+    setAttributes(employerInput, {
+        "type": "text",
+        "name": "employer-" + jobFieldsetIndex,
+        "placeholder": "e.g. Apple",
+        "id": "employer-" + jobFieldsetIndex
+    });
 
     const jobDivgroup2 = divgroup.cloneNode(true);
 
@@ -107,7 +145,12 @@ const generateJobFieldset = () => {
     jobLocationLabel.setAttribute("for", "job-location-" + jobFieldsetIndex);
     addTextNode(jobLocationLabel, "Job Location");
     const jobLocationInput = input.cloneNode(true);
-    setAttributes(jobLocationInput, { "type": "text", "name": "job-location-" + jobFieldsetIndex, "placeholder": "e.g. Munich, Germany", "id": "job-location-" + jobFieldsetIndex });
+    setAttributes(jobLocationInput, {
+        "type": "text",
+        "name": "job-location-" + jobFieldsetIndex,
+        "placeholder": "e.g. Munich, Germany",
+        "id": "job-location-" + jobFieldsetIndex
+    });
 
     // start date
     // "month" input type is partially supported (95% of browsers)
@@ -116,7 +159,11 @@ const generateJobFieldset = () => {
     startDateLabel.setAttribute("for", "job-start-date-" + jobFieldsetIndex);
     addTextNode(startDateLabel, "Start Date");
     const startDateInput = input.cloneNode(true);
-    setAttributes(startDateInput, { "type": "month", "name": "job-start-date-" + jobFieldsetIndex, "id": "job-start-date-" + jobFieldsetIndex })
+    setAttributes(startDateInput, {
+        "type": "month",
+        "name": "job-start-date-" + jobFieldsetIndex,
+        "id": "job-start-date-" + jobFieldsetIndex
+    })
 
     // end date
     // problem with 1 label, 2 inputs: the label cannot be linked to both inputs
@@ -127,6 +174,8 @@ const generateJobFieldset = () => {
     formgroup3EndDate.append(endDateLabel);
     generateDateDropdown("job-end-date-month-" + jobFieldsetIndex, monthArray, formgroup3EndDate);
     generateDateDropdown("job-end-date-year-" + jobFieldsetIndex, yearArray, formgroup3EndDate);
+    // now I cannot access these generated inputs as variables. How could I do it?
+    const endDate = formgroup3EndDate.childNodes;
 
     const jobDivgroup3 = divgroup.cloneNode(true);
 
@@ -136,15 +185,27 @@ const generateJobFieldset = () => {
     jobDescriptionLabel.setAttribute("for", "job-description-" + jobFieldsetIndex);
     addTextNode(jobDescriptionLabel, "Job Description");
     const jobDescriptionInput = textarea.cloneNode(true);
-    setAttributes(jobDescriptionInput, { "type": "text", "name": "job-description-" + jobFieldsetIndex, "id": "job-description-" + jobFieldsetIndex, "placeholder": "Type your responsibilities and achievements here.", "rows": "10" });
+    setAttributes(jobDescriptionInput, {
+        "type": "text",
+        "name": "job-description-" + jobFieldsetIndex,
+        "id": "job-description-" + jobFieldsetIndex,
+        "placeholder": "Type your responsibilities and achievements here.",
+        "rows": "10"
+    });
 
     const jobDivgroup4 = divgroup.cloneNode(true);
 
     // checkbox - I currently work here
     const formgroup6JobCurrent = formgroup6.cloneNode(true);
     const jobCurrentInput = document.createElement("input");
-    setAttributes(jobCurrentInput, { "type": "checkbox", "name": "job-current-" + jobFieldsetIndex, "id": "job-current-" + jobFieldsetIndex })
+    setAttributes(jobCurrentInput, {
+        "type": "checkbox",
+        "name": "job-current-" + jobFieldsetIndex,
+        "id": "job-current-" + jobFieldsetIndex
+    })
     jobCurrentInput.classList.add("job-current-checkbox", "job-end");
+    // How to pass arguments to addEventListener function? I found this solution:
+    jobCurrentInput.addEventListener("change", event => disableEndDate(event, endDate));
     const jobCurrentLabel = document.createElement("label");
     addTextNode(jobCurrentLabel, "I currently work here");
     jobCurrentLabel.classList.add("inline-label");
@@ -153,10 +214,12 @@ const generateJobFieldset = () => {
     const jobDivgroup5 = divgroup.cloneNode(true);
 
     // add another position
-    const formgroup6addPosition = formgroup6.cloneNode(true);
-    formgroup6addPosition.classList.add("clickable");
-    setAttributes(formgroup6addPosition, { "id": "add-position" + jobFieldsetIndex });
-    formgroup6addPosition.addEventListener("click", generateJobFieldset);
+    const formgroup6AddPosition = formgroup6.cloneNode(true);
+    formgroup6AddPosition.classList.add("clickable");
+    setAttributes(formgroup6AddPosition, {
+        "id": "add-position" + jobFieldsetIndex
+    });
+    formgroup6AddPosition.addEventListener("click", generateJobFieldset);
     const plusIcon = document.createElement("i");
     const addPosition = document.createElement("a");
     addPosition.classList.add("add-position", "inline-label");
@@ -164,7 +227,25 @@ const generateJobFieldset = () => {
     addPosition.textContent = "Add another position";
     plusIcon.classList.add("fa-solid", "fa-circle-plus", "fa-lg");
 
-    // delete position - coming soon
+    // delete position
+    const formgroup6DeletePosition = formgroup6.cloneNode(true);
+    if (jobFieldsetIndex > 0) {
+        formgroup6DeletePosition.classList.add("clickable");
+        setAttributes(formgroup6DeletePosition, {
+            "id": "delete-position" + jobFieldsetIndex
+        });
+        // How to pass arguments to addEventListener function?
+        // I do not use the event argument, but I have to pass it, right?
+        formgroup6DeletePosition.addEventListener("click", event => deleteFieldset(event, jobFieldset));
+        const minusIcon = document.createElement("i");
+        const deletePosition = document.createElement("a");
+        deletePosition.classList.add("delete-position", "inline-label");
+        deletePosition.append(minusIcon);
+        deletePosition.textContent = "Delete this position";
+        minusIcon.classList.add("fa-solid", "fa-circle-minus", "fa-lg");
+        formgroup6DeletePosition.append(minusIcon, deletePosition);
+    }
+
 
     // append nodes to each other
     formgroup6Title.append(jobTitleLabel, jobTitleInput);
@@ -176,34 +257,23 @@ const generateJobFieldset = () => {
     formgroup12JobDescription.append(jobDescriptionLabel, jobDescriptionInput);
     formgroup6JobCurrent.append(jobCurrentInput, jobCurrentLabel);
     jobDivgroup3.append(formgroup12JobDescription);
-    formgroup6addPosition.append(plusIcon, addPosition);
     jobDivgroup4.append(formgroup6JobCurrent);
-    jobDivgroup5.append(formgroup6addPosition)
+    formgroup6AddPosition.append(plusIcon, addPosition);
+    jobDivgroup5.append(formgroup6AddPosition, formgroup6DeletePosition);
     jobFieldset.append(jobDivgroup1, jobDivgroup2, jobDivgroup3, jobDivgroup4, jobDivgroup5);
     experienceFieldset.append(jobFieldset);
+
 
     jobFieldsetIndex += 1;
 }
 
 generateJobFieldset();
 
-// disable job end date if "I currently work here" checkbox is checked
-const jobCurrentCheck = document.querySelectorAll("[id^='job-current-']");
-Array.from(jobCurrentCheck).forEach(function(item, index) {
-    const endDate = document.querySelectorAll("[id^='job-end-date-'][id$='" + index + "']");
-    item.addEventListener("change", event => {
-        if (event.target.checked) {
-            endDate.forEach(elem => {
-                elem.disabled = true;
-            })
-        } else {
-            endDate.forEach(elem => {
-                elem.disabled = false;
-            })
-        }
-    })
-})
 
+//SKILLS
+const skillRating = () => {
+
+}
 
 
 // References
@@ -212,3 +282,5 @@ Array.from(jobCurrentCheck).forEach(function(item, index) {
 // https://stackoverflow.com/questions/31643204/textnode-or-textcontent
 // https://stackoverflow.com/questions/3871547/iterating-over-result-of-getelementsbyclassname-using-array-foreach
 // https://stackoverflow.com/questions/16728600/native-javascript-queryselectorall-with-multiple-many-pseudo-selectors-matches
+// https://stackoverflow.com/questions/63455218/how-to-pass-arguments-to-addeventlistener-listener-function-with-typescript
+// https://krisbunda.com/blog/2019/10/06/star-rating-checkbox-form-input-html-css-only-server-php-submit-file/
