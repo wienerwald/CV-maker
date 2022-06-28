@@ -27,7 +27,7 @@ body {
     right: 0;
 }
 
-.div-group {
+.row-div {
     display: flex;
     flex-direction: row;
 }
@@ -106,9 +106,11 @@ body {
 .clickable:hover {
     box-sizing: border-box;
     color: cadetblue;
-    outline: 1px dashed cadetblue;
-    outline-offset: -2px;
     cursor: pointer;
+}
+
+.clickable:active {
+    color: rgb(66, 106, 108);
 }
 
 .submit {
@@ -117,7 +119,7 @@ body {
     margin: 20px 0px;
 }
 
-.star-input{
+.star-input {
     display: none;
 }
 
@@ -131,7 +133,7 @@ body {
     user-select: none;
 }
 
-.star-input:checked + .star-label::before {
+.star-input:checked+.star-label::before {
     color: #FFC107;
 }
 
