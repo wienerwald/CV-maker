@@ -14,7 +14,6 @@
     <div class="container">
         <div class="form-container col-8">
             <form id="cv-form">
-                <!-- We need the 'name' attribute in the form! If the name attribute is omitted, the value of the input field will not be sent. -->
                 <fieldset id="contact-info-field" class="fieldset">
                     <legend class="fieldset-legend">Contact info</legend>
                     <div class="form-group">
@@ -111,7 +110,6 @@
                             <input type="month" name="school-end-date-1" placeholder="" class="form-control" id="school-end-date-1">
                         </div>
                     </div>
-                    <!-- Format checkbox label -->
                     <div class="form-group">
                         <input type="checkbox" name="school-currently-1" placeholder="" class="" id="school-currently-1">
                         <label for="school-currently-1" class="">I currently attend here</label>
@@ -122,27 +120,6 @@
 
                 <fieldset id="skills-field" class="fieldset">
                     <legend class="fieldset-legend">Skills</legend>
-                    <div class="row-div">
-                        <div class="form-group col-3">
-                            <label for="skill-name-0" class="control-label">Skill</label>
-                            <input type="text" name="skill-name-0" placeholder="" class="form-control" id="skill-name-0">
-                        </div>
-                        <div class="form-group col-3">
-                            <label for="skill-rating-0" class="control-label">Rating</label>
-                            <input type="checkbox" id="star-0-1" name="star-0" class="star-input" value="1">
-                            <label for="star-0-1" class="star-label" title="1 star"></label>
-                            <input type="checkbox" id="star-0-2" name="star-0" class="star-input" value="2">
-                            <label for="star-0-2" class="star-label" title="2 stars"></label>
-                            <input type="checkbox" id="star-0-3" name="star-0" class="star-input" value="3">
-                            <label for="star-0-3" class="star-label" title="2 stars"></label>
-                            <input type="checkbox" id="star-0-4" name="star-0" class="star-input" value="4">
-                            <label for="star-0-4" class="star-label" title="4 stars"></label>
-                            <input type="checkbox" id="star-0-5" name="star-0" class="star-input" value="5">
-                            <label for="star-0-5" class="star-label" title="5 stars"></label>
-                        </div>
-                        <!-- Add another skill -->
-                        <!-- Delete skill -->
-                    </div>
                 </fieldset>
 
                 <button type="submit" class="submit">Submit</button>

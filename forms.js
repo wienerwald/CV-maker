@@ -14,12 +14,13 @@ import {
     createDeleteButton,
     disableEndDate, // I still have to build it into the checkbox event listener
     deleteFieldset,
-    elementIndexCounter
+    elementIndexCounter,
+    createStarRating
 } from "./utils.js";
 
 export const createJobFieldset = () => {
     const index = elementIndexCounter("job-field");
-
+    var tmp = null; //!!!
     document.getElementById("experience-field").append(
         createFieldset("job-field-" + index,
             createRowDiv(
@@ -44,7 +45,7 @@ export const createJobFieldset = () => {
                 createFormGroupDiv(3,
                     createLabel("job-end-date-" + index, "End Date"),
                     createMonthDropdown("job-end-date-month-" + index),
-                    createYearDropdown("job-end-date-year-" + index)
+                    tmp = createYearDropdown("job-end-date-year-" + index) //!!!
                 )
             ),
             createRowDiv(
@@ -72,3 +73,26 @@ export const createJobFieldset = () => {
 
 
 };
+
+export const createSkillFieldset = () => {
+    const index = elementIndexCounter("skill-name");
+    document.getElementById("skills-field").append(
+            createFieldset("skill-field-" + index,
+                createRowDiv(
+                    createFormGroupDiv(3,
+                        createLabel("skill-name-" + index, "Skill"),
+                        createTextInput("skill-name-" + index, "e.g. HTML5")
+                    ),
+                    createFormGroupDiv(3,
+                        createLabel("skill-rating-" + index, "Rating"),
+                        createStarRating("skill-" + index)
+                    ),
+                    createAddButton("Add another skill", createSkillFieldset),
+                    createDeleteButton("Delete skill", function() {
+                        deleteFieldset(document.getElementById("skill-field-" + index))
+                    }, index)
+                )
+            )
+        )
+        // Add event listener to stars: mousover és click
+}

@@ -2,26 +2,26 @@ const setAttributes = (elem, attrs) => {
     for (let key in attrs) {
         elem.setAttribute(key, attrs[key]);
     }
-}
+};
 
 const createElementAddClasslist = (element, ...classList) => {
     const newElement = document.createElement(element);
     classList.forEach(item => newElement.classList.add(item));
     return newElement;
-}
+};
 
 export const createFieldset = (id, ...children) => {
     const newFieldset = createElementAddClasslist("fieldset", "fieldset");
     newFieldset.setAttribute("id", id);
     newFieldset.append(...children);
     return newFieldset;
-}
+};
 
 export const createRowDiv = (...children) => {
     const newRowDiv = createElementAddClasslist("div", "row-div");
     newRowDiv.append(...children);
     return newRowDiv;
-}
+};
 
 export const createFormGroupDiv = (colWidth, ...children) => {
     const newFormGroupDiv = createElementAddClasslist("div", "form-group", "col-" + colWidth);
@@ -34,7 +34,7 @@ export const createLabel = (inputId, textNode) => {
     newLabel.setAttribute("for", inputId);
     newLabel.textContent = textNode;
     return newLabel;
-}
+};
 
 export const createTextInput = (id, placeholder) => {
     const newTextInput = createElementAddClasslist("input", "form-control");
@@ -45,7 +45,7 @@ export const createTextInput = (id, placeholder) => {
         "id": id,
     });
     return newTextInput;
-}
+};
 
 export const createTextarea = (id, placeholder) => {
     const newTextarea = createElementAddClasslist("textarea", "form-control", "textarea");
@@ -57,7 +57,8 @@ export const createTextarea = (id, placeholder) => {
         "rows": "10",
     });
     return newTextarea;
-}
+};
+
 
 // I am unsure, what is the best way to add event listener to the checkbox
 export const createCheckboxInput = (id) => {
@@ -68,14 +69,14 @@ export const createCheckboxInput = (id) => {
         "id": id,
     });
     return newCheckboxInput;
-}
+};
 
 export const createCheckboxLabel = (inputId, textNode) => {
     const newLabel = createElementAddClasslist("label", "inline-label");
     newLabel.setAttribute("for", inputId);
     newLabel.textContent = textNode;
     return newLabel;
-}
+};
 
 export const createMonthInput = (id) => {
     const newMonthInput = createElementAddClasslist("input", "form-control");
@@ -85,7 +86,7 @@ export const createMonthInput = (id) => {
         "id": id,
     });
     return newMonthInput;
-}
+};
 
 // Is it a good practice to define the const directly before it is used?
 const MONTH = 12;
@@ -97,7 +98,7 @@ const createMonthArray = () => {
         monthArray.push(month);
     };
     return monthArray;
-}
+};
 
 const MIN_YEAR = 1950;
 const THIS_YEAR = new Date().getFullYear();
@@ -108,7 +109,7 @@ const createYearArray = () => {
         yearArray.push(i);
     }
     return yearArray;
-}
+};
 
 const createDateDropdown = (id, dateArray) => {
     const select = document.createElement("select");
@@ -136,24 +137,24 @@ const createClickableDiv = (colWidth, textContent, ...iconClassList) => {
     link.textContent = textContent;
     icon.classList.add(...iconClassList);
     const div = createFormGroupDiv(colWidth, icon, link);
-    div.classList.add("clickable")
+    div.classList.add("clickable");
     return div;
-}
+};
 
 export const createAddButton = (textContent, eventListenerFunction) => {
-    const newButton = createClickableDiv(6, textContent, "fa-solid", "fa-circle-plus", "fa-lg");
+    const newButton = createClickableDiv(3, textContent, "fa-solid", "fa-circle-plus", "fa-lg");
     newButton.addEventListener("click", eventListenerFunction);
     return newButton;
-}
+};
 
 export const createDeleteButton = (textContent, eventListenerFunction, index) => {
     if (index > 0) {
-        const newButton = createClickableDiv(6, textContent, "fa-solid", "fa-circle-minus", "fa-lg");
+        const newButton = createClickableDiv(3, textContent, "fa-solid", "fa-circle-minus", "fa-lg");
         newButton.addEventListener("click", eventListenerFunction);
         return newButton;
     };
-    return ""
-}
+    return "";
+};
 
 export const disableEndDate = (event) => {
     if (event.target.checked) {
@@ -169,11 +170,73 @@ export const disableEndDate = (event) => {
 
 export const deleteFieldset = (fieldset) => {
     fieldset.remove();
+};
+
+
+
+const createStarLabel = (id, starNr) => {
+    const newLabel = createElementAddClasslist("label", "star-label");
+    setAttributes(newLabel, {
+        "for": id + "-" + starNr,
+        "title": 1 + starNr + " stars"
+    });
+    newLabel.textContent = "★";
+    return newLabel;
+};
+
+const createStarCheckbox = (id, starNr) => {
+    const newCheckboxInput = createElementAddClasslist("input", "star-input");
+    setAttributes(newCheckboxInput, {
+        "type": "checkbox",
+        "name": id,
+        "id": id + "-" + starNr,
+        "value": starNr + 1
+    });
+    return newCheckboxInput;
+};
+
+
+export const createStarRating = (id) => {
+    const starContainerDiv = document.createElement("div");
+    starContainerDiv.setAttribute("id", "stars-" + id);
+    // let starContainerDiv = document.createDocumentFragment();
+    for (let starNr = 0; starNr < 5; starNr++) {
+        starContainerDiv.appendChild(createStarCheckbox(id, starNr));
+        starContainerDiv.appendChild(createStarLabel(id, starNr));
+    }
+    starContainerDiv.childNodes.forEach(item => {
+        item.addEventListener("mouseover", mouseOverStar);
+        item.addEventListener("mouseout", mouseOutStar);
+        // item.addEventListener("click", clickStar);
+    })
+    return starContainerDiv;
 }
 
-// not a good solution with the list.length, I am still thinking about a better one
+
+const clickStar = (event) => {
+    event.target.previousSibling.checked = true;
+}
+
+const mouseOverStar = (event) => {
+    const siblings = event.target.parentNode.childNodes;
+    console.log(siblings.nodeName);
+    event.target.previousSibling.checked = true;
+    console.log(event.target.previousSibling.value);
+    console.log(event.target.parentNode)
+}
+
+const mouseOutStar = (event) => {
+    event.target.previousSibling.checked = false;
+}
+
+
 export const elementIndexCounter = (elementId) => {
     const list = [...document.querySelectorAll("[id^=" + elementId + "]")];
-    const elementMaxIndex = list.length;
-    return elementMaxIndex;
+    if (list.length == 0) {
+        return 0
+    } else {
+        const idList = list.map(item => item.id);
+        const newIndex = parseInt(idList[idList.length - 1].slice(-1)) + 1;
+        return newIndex
+    }
 }

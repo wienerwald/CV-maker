@@ -120,20 +120,21 @@ body {
 }
 
 .star-input {
+    font-size: 28px;
     display: none;
 }
 
 .star-label {
+    font-size: 28px;
+    padding-right: 4px;
     color: #C8C8C8;
 }
 
-.star-label::before {
-    content: "\2605";
-    font-size: 1.5em;
-    user-select: none;
+.star-input:checked+.star-label {
+    color: #FFC107;
 }
 
-.star-input:checked+.star-label::before {
+.star-input+.star-label:hover {
     color: #FFC107;
 }
 

@@ -1,4 +1,4 @@
-import { createJobFieldset } from "./forms.js";
+import { createJobFieldset, createSkillFieldset } from "./forms.js";
 
 const cvForm = document.getElementById("cv-form");
 const previewText = document.getElementById("preview-text");
@@ -12,3 +12,5 @@ cvForm.onsubmit = (event) => {
 }
 
 createJobFieldset();
+
+createSkillFieldset();

@@ -5,6 +5,7 @@ https://stackoverflow.com/questions/31643204/textnode-or-textcontent
 https://stackoverflow.com/questions/3871547/iterating-over-result-of-getelementsbyclassname-using-array-foreach
 https://stackoverflow.com/questions/16728600/native-javascript-queryselectorall-with-multiple-many-pseudo-selectors-matches
 https://stackoverflow.com/questions/63455218/how-to-pass-arguments-to-addeventlistener-listener-function-with-typescript
+https://www.w3schools.com/js/js_htmldom_eventlistener.asp 
 https://krisbunda.com/blog/2019/10/06/star-rating-checkbox-form-input-html-css-only-server-php-submit-file/
 https://javascript.info/modules-intro
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
