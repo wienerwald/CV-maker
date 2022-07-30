@@ -172,61 +172,50 @@ export const deleteFieldset = (fieldset) => {
     fieldset.remove();
 };
 
-
-
-const createStarLabel = (id, starNr) => {
-    const newLabel = createElementAddClasslist("label", "star-label");
-    setAttributes(newLabel, {
-        "for": id + "-" + starNr,
-        "title": 1 + starNr + " stars"
-    });
-    newLabel.textContent = "★";
-    return newLabel;
-};
-
-const createStarCheckbox = (id, starNr) => {
-    const newCheckboxInput = createElementAddClasslist("input", "star-input");
-    setAttributes(newCheckboxInput, {
-        "type": "checkbox",
-        "name": id,
-        "id": id + "-" + starNr,
-        "value": starNr + 1
-    });
-    return newCheckboxInput;
-};
-
-
 export const createStarRating = (id) => {
     const starContainerDiv = document.createElement("div");
     starContainerDiv.setAttribute("id", "stars-" + id);
-    // let starContainerDiv = document.createDocumentFragment();
-    for (let starNr = 0; starNr < 5; starNr++) {
-        starContainerDiv.appendChild(createStarCheckbox(id, starNr));
-        starContainerDiv.appendChild(createStarLabel(id, starNr));
+    const starInput = createTextInput(id + "-input", "index of star selected");
+    starInput.classList.add("star-input");
+    let stars = [];
+    for (let i = 0; i < 5; i++) {
+        let star = createElementAddClasslist("span", "star");
+        setAttributes(star, {
+            "id": id + "-" + i,
+        })
+        star.textContent = "★";
+        star.addEventListener("click", function() { setStars(id, i) });
+        star.addEventListener("mouseover", function() { overStars(id, i) });
+        star.addEventListener("mouseout", function() { clearStars(id, i) });
+        stars[i] = star;
     }
-    starContainerDiv.childNodes.forEach(item => {
-        item.addEventListener("mouseover", mouseOverStar);
-        item.addEventListener("mouseout", mouseOutStar);
-        // item.addEventListener("click", clickStar);
-    })
+    starContainerDiv.append(...stars, starInput);
     return starContainerDiv;
 }
 
-
-const clickStar = (event) => {
-    event.target.previousSibling.checked = true;
+const setStars = (id, stars) => {
+    document.getElementById(id + "-input").value = stars;
+    for (var i = 0; i <= stars; i++) {
+        document.getElementById(id + "-" + i).classList.add("star-clicked");
+    }
+    for (var i = stars + 1; i <= 4; i++) {
+        document.getElementById(id + "-" + i).classList.remove("star-clicked");
+    }
 }
 
-const mouseOverStar = (event) => {
-    const siblings = event.target.parentNode.childNodes;
-    console.log(siblings.nodeName);
-    event.target.previousSibling.checked = true;
-    console.log(event.target.previousSibling.value);
-    console.log(event.target.parentNode)
+const overStars = (id, stars) => {
+    for (var i = 0; i <= stars; i++) {
+        document.getElementById(id + "-" + i).classList.add("star-active");
+    }
+    for (var i = stars + 1; i <= 4; i++) {
+        document.getElementById(id + "-" + i).classList.remove("star-active");
+    }
 }
 
-const mouseOutStar = (event) => {
-    event.target.previousSibling.checked = false;
+const clearStars = (id, stars) => {
+    for (var i = 0; i <= 4; i++) {
+        document.getElementById(id + "-" + i).classList.remove("star-active");
+    }
 }
 
 

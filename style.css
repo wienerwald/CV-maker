@@ -124,7 +124,7 @@ body {
     display: none;
 }
 
-.star-label {
+.star {
     font-size: 28px;
     padding-right: 4px;
     color: #C8C8C8;
@@ -134,8 +134,12 @@ body {
     color: #FFC107;
 }
 
-.star-input+.star-label:hover {
+.star-clicked {
     color: #FFC107;
+}
+
+.star-active {
+    color: #d8a509;
 }
 
 #preview-page {
