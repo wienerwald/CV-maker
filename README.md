@@ -1,1 +1,1 @@
-[CV-maker](https://wienerwald.github.io/CV-maker/)
+[Live demo](https://wienerwald.github.io/CV-maker/)
